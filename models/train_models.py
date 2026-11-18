@@ -50,6 +50,7 @@ def main() -> None:
                 "precision": precision_score(y_valid, scores >= 0.5, zero_division=0),
                 "recall": recall_score(y_valid, scores >= 0.5, zero_division=0),
                 "f1": f1_score(y_valid, scores >= 0.5, zero_division=0),
+                "macro_f1": f1_score(y_valid, scores >= 0.5, average="macro", zero_division=0),
                 "log_loss": log_loss(y_valid, np.clip(scores, 1e-7, 1 - 1e-7), labels=[0, 1]),
                 "observation_top1_accuracy": top1_accuracy(fold_valid_all, scores_all),
                 "candidate_miss_rate": observation_candidate_miss_rate(fold_valid_all)})
@@ -70,6 +71,7 @@ def main() -> None:
             "cv_precision": precision_score(yy, pp >= .5, zero_division=0),
             "cv_recall": recall_score(yy, pp >= .5, zero_division=0),
             "cv_f1": f1_score(yy, pp >= .5, zero_division=0),
+            "cv_macro_f1": f1_score(yy, pp >= .5, average="macro", zero_division=0),
             "cv_log_loss": log_loss(yy, np.clip(pp, 1e-7, 1 - 1e-7), labels=[0, 1]),
             "cv_observation_top1_accuracy": top1_accuracy(all_rows.loc[usable].reset_index(drop=True), oof_scores[usable]),
             "cv_candidate_miss_rate": observation_candidate_miss_rate(all_rows),

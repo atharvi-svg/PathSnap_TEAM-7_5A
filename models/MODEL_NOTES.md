@@ -33,9 +33,16 @@ The tuned model improved pooled grouped-CV top-1 by 0.0009 over its untuned defa
 
 The student-test candidate miss rate was 1.94% among route-distance-valid observations. There were also 27 of 19,160 GPS fixes beyond the 50 m weak-label threshold. Candidate probabilities in the supplied prediction file sum to one within each observation; this normalization is a ranking interface and should not be interpreted as calibrated route certainty.
 
+## Person 3 and Person 4 integration
+
+The connected route pipeline is implemented under `route_matching/`: `road_graph.py` builds directed connectivity; `hmm.py` defines candidate-state emissions and transition scores; `viterbi.py` decodes candidate sequences; `route_reconstruction.py` composes inference; and the evaluation and visualization modules write route metrics and maps. The pooled student-test results are in `results/route_matching/hmm_comparison.csv`. Across 19,149 eligible adjacent transitions, HMM continuity was 0.9993 versus classifier-only continuity of 0.9662. HMM pooled top-1 was 0.7861 versus 0.7907 for the classifier, so route continuity improved while weak-label top-1 decreased slightly.
+
+`backend/` exposes health, trip-list, and prediction endpoints, and `frontend/` provides the Streamlit evaluator interface. The selected model is loaded from `models/best_model.pkl`. The inference path loads a trip without its reference route; the route is loaded only after predictions to compute aggregate development metrics. Reference route IDs and geometry are not included in the API result. The integrated `backend.pipeline.predict_trip` was exercised on student-test trip `00000052`; it returned 262 observation results and a 93-arc predicted sequence with evaluation metrics.
+
 ## Limits
 
 - The route-proximity labels can be wrong when GPS noise, parallel roads, or route geometry make the nearest arc ambiguous.
 - Candidate generation can omit the reference arc; a classifier cannot recover an arc that is absent from its candidate list.
 - CV and final fitting use up to 100 sampled observations per trip, not every training observation.
-- The work covers candidate scoring only. Person 3 still needs to implement sequential route reconstruction/decoding, API/UI integration, and evaluation-time handling if those components are in the broader project brief.
+- The included archive has no evaluator partition. Run the configured API and UI against the evaluator files when they are provided; do not substitute student-test results for evaluator results.
+- Folium is in `requirements.txt`; it was unavailable on the offline build host, so the included route image was generated with the offline visualization fallback.

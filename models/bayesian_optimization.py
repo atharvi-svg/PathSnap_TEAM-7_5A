@@ -74,6 +74,7 @@ def cross_validated_metrics(name: str, params: dict, rows: pd.DataFrame) -> dict
         "precision": float(precision_score(y, p >= .5, zero_division=0)),
         "recall": float(recall_score(y, p >= .5, zero_division=0)),
         "f1": float(f1_score(y, p >= .5, zero_division=0)),
+        "macro_f1": float(f1_score(y, p >= .5, average="macro", zero_division=0)),
         "log_loss": float(log_loss(y, np.clip(p, 1e-7, 1 - 1e-7), labels=[0, 1])),
         "observation_top1_accuracy": float(top1_accuracy(scored, scores))}
 

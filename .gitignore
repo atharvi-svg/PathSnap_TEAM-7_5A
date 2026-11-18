@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+.venv310/
+venv/
+.env
+*.log
+.DS_Store
+Student folder/
+eval_inputs/
+eval_refs/
+artifacts/
+results/candidates/candidate_features.csv
+results/candidates/candidate_features.zip
+results/candidates/student_test_predictions.csv
+results/route_matching/student_test_route_predictions.csv
