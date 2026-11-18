@@ -1,0 +1,17 @@
+{
+  "model": "HistGradientBoosting",
+  "algorithm_family": "gradient boosting",
+  "cv_folds": 4,
+  "grouping": "trip_id",
+  "cv_candidate_accuracy": 0.962693246541904,
+  "cv_precision": 0.47095751007731446,
+  "cv_recall": 0.9665039327366423,
+  "cv_f1": 0.63331408006398,
+  "cv_log_loss": 0.09677307213077306,
+  "cv_observation_top1_accuracy": 0.7853736089030207,
+  "cv_candidate_miss_rate": 0.023052464228934817,
+  "training_seconds": 14.816146900004242,
+  "sampled_train_observations": 7374,
+  "sampled_candidate_rows": 221220,
+  "sampling_cap_per_trip": 100
+}

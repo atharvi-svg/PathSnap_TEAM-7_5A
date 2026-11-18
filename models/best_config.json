@@ -1,0 +1,46 @@
+{
+  "selected_model": "HistGradientBoosting",
+  "best_parameters": {
+    "max_iter": 179,
+    "learning_rate": 0.1399624970784254,
+    "max_leaf_nodes": 10,
+    "l2_regularization": 0.0017329293435591282
+  },
+  "selection_basis": "highest mean observation-level top-1 accuracy in 4-fold GroupKFold by trip_id",
+  "bayesian_objective": "pooled observation-level top-1 accuracy in 4-fold GroupKFold by trip_id",
+  "search_method": "Gaussian process with Mat\u00e9rn 5/2 kernel and expected improvement",
+  "trials": 10,
+  "best_trial": 10,
+  "best_cv_top1": 0.7863010068892422,
+  "cv_fold_std": 0.021105939239841023,
+  "default_cv_top1": 0.7853736089030207,
+  "default_cv_fold_std": 0.01946756313465457,
+  "cv_top1_improvement": 0.0009273979862215453,
+  "tuned_cv_metrics": {
+    "accuracy": 0.9617982099267697,
+    "precision": 0.46488425171177045,
+    "recall": 0.9667751559533496,
+    "f1": 0.6278567968646792,
+    "log_loss": 0.098727543616689,
+    "observation_top1_accuracy": 0.7863010068892422
+  },
+  "sampled_observations_per_trip_during_optimization": 100,
+  "sampled_observations_per_trip_for_final_fit": 100,
+  "feature_columns": [
+    "distance_to_road_m",
+    "midpoint_distance_m",
+    "bearing_difference_deg",
+    "gps_speed_mps",
+    "arc_length_m",
+    "segment_fraction",
+    "candidate_rank",
+    "time_gap_s"
+  ],
+  "random_seed": 20261118,
+  "candidate_generation_top_k": 30,
+  "weak_label_threshold_m": 50,
+  "optimization_wall_seconds": 100.73036770004546,
+  "ai_assistance_disclosure": "Code and experimental runs were prepared with Codex assistance; review and understand before academic use.",
+  "python_version": "3.10.11",
+  "scikit_learn_version": "1.7.2"
+}
